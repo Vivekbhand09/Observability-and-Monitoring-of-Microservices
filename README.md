@@ -169,5 +169,207 @@ Monitoring focuses on **known problems** and system stability.
 | Usage | Developers & SREs | Ops & Support teams |
 
 ---
+## 📝 Logging in EazyBank Microservices
 
+Logging is a **core foundation** of observability. Before metrics and traces, logs are usually the **first signal** that something is wrong in a system.
 
+---
+
+## 📘 What Is Logging?
+
+### 🔍 Detailed Definition
+
+**Logging** is the process of **recording events, messages, and contextual information** produced by an application while it is running.
+
+In microservices, logging helps answer questions like:
+- What happened?
+- When did it happen?
+- In which service did it happen?
+- What was the request or error context?
+
+Logs act as a **historical record of system behavior**, making them essential for:
+- Debugging issues
+- Root cause analysis
+- Auditing and compliance
+- Understanding runtime behavior
+
+In distributed systems like microservices, logs must be:
+- **Centralized**
+- **Searchable**
+- **Correlated across services**
+
+Without centralized logging, debugging becomes extremely difficult.
+
+---
+
+## 📊 Log Levels Explained
+
+Log levels define the **severity and importance** of log messages.
+
+### 1️⃣ TRACE 🧵
+- Most detailed level
+- Used for **very fine-grained debugging**
+- Shows method-level or step-by-step execution
+- Typically disabled in production
+
+---
+
+### 2️⃣ DEBUG 🐞
+- Used for debugging during development
+- Shows internal application state
+- Helps developers understand logic flow
+
+---
+
+### 3️⃣ INFO ℹ️
+- General application events
+- Indicates normal system behavior
+- Commonly enabled in production
+
+---
+
+### 4️⃣ WARN ⚠️
+- Indicates potential problems
+- System continues to work but something looks abnormal
+
+---
+
+### 5️⃣ ERROR ❌
+- Serious issues that caused a failure
+- Requires immediate attention
+
+---
+
+## 🧠 Why Centralized Logging Is Needed
+
+In a microservices architecture:
+- Each service runs independently
+- Each service generates its own logs
+- Logs are spread across multiple containers/VMs
+
+👉 **Centralized logging** solves this by:
+- Collecting logs from all services
+- Storing them in one place
+- Making them searchable and filterable
+
+---
+
+## 📦 Managing Logs with Grafana Stack
+
+EazyBank uses the **Grafana Observability Stack** for logging:
+- **Grafana** → Visualization & querying
+- **Loki** → Log storage & indexing
+- **Alloy** → Log collection & forwarding
+
+---
+
+## 📊 Grafana (Visualization Layer)
+
+### 📘 What Is Grafana?
+
+**Grafana** is an **open-source observability and visualization platform** used to explore, query, and visualize logs, metrics, and traces.
+
+Grafana provides:
+- Interactive dashboards
+- Powerful query capabilities
+- Unified view of observability data
+
+### 🎯 Role of Grafana in Logging
+
+- Connects to Loki as a data source
+- Displays logs in real time
+- Allows filtering by:
+  - Service name
+  - Log level
+  - Time range
+- Helps developers quickly identify issues
+
+Grafana acts as the **single pane of glass** for observability.
+
+---
+
+## 🗄️ Loki (Log Storage Layer)
+
+### 📘 What Is Loki?
+
+**Grafana Loki** is a **log aggregation and storage system** designed specifically for cloud-native and microservices environments.
+
+Unlike traditional log systems:
+- Loki does **not index full log content**
+- It indexes only **metadata (labels)**
+
+### 🧠 Why Loki Is Efficient
+
+- Lower storage cost
+- Faster ingestion
+- Scales easily with microservices
+
+### 🎯 Role of Loki
+
+- Receives logs from Alloy
+- Stores logs efficiently
+- Indexes logs using labels like:
+  - service name
+  - environment
+  - log level
+
+Loki is optimized for **high-volume, low-cost log storage**.
+
+---
+
+## 🚚 Alloy (Log Collector)
+
+### 📘 What Is Alloy?
+
+**Grafana Alloy** is a **unified telemetry collector** used to collect and forward:
+- Logs
+- Metrics
+- Traces
+
+(Alloy is the modern evolution of Promtail.)
+
+### 🎯 Role of Alloy in Logging
+
+- Runs alongside microservices
+- Reads logs from:
+  - Application files
+  - Containers
+  - Standard output
+- Adds labels (service name, instance, env)
+- Sends logs to Loki
+
+Alloy acts as the **bridge between microservices and Loki**.
+
+---
+
+## 🔄 Logging Flow in EazyBank
+
+### 🧩 End-to-End Log Flow
+
+1️⃣ **Microservices generate logs**  
+Each service (Accounts, Loans, Cards, Gateway) writes logs during execution.
+
+2️⃣ **Alloy collects the logs**  
+Alloy reads logs, enriches them with metadata, and prepares them for storage.
+
+3️⃣ **Loki stores the logs**  
+Loki receives logs from Alloy and stores them efficiently using labels.
+
+4️⃣ **Grafana displays the logs**  
+Grafana queries Loki and displays logs in a searchable, visual format.
+
+---
+
+## 🔁 Logging Architecture Flow
+
+```text
+Microservices
+      ↓
+   Grafana Alloy
+      ↓
+      Loki
+      ↓
+   Grafana UI
+
+```
+---
