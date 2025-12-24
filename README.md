@@ -716,3 +716,176 @@ By integrating **Spring Boot Actuator + Micrometer + Prometheus + Grafana**, Eaz
 
 🚀 **This makes the EazyBank microservices platform observable, monitorable, and production-ready**
 
+---
+
+## 🔍 Distributed Tracing with Grafana, Tempo & OpenTelemetry
+
+## ❓ Why Do We Need Distributed Tracing?
+
+In a microservices system:
+- A single client request flows through **multiple services**
+- Debugging issues becomes difficult because logs are **scattered**
+- It’s hard to know:
+  - Which service was slow
+  - Where the failure occurred
+  - How long each service took
+
+### ✅ Tracing solves this by:
+- Tracking a request **end-to-end**
+- Showing how a request moves across services
+- Measuring latency at each hop
+- Helping identify performance bottlenecks and failures quickly
+
+---
+
+## 🧠 Core Tracing Concepts
+
+### 1️⃣ Trace
+A **Trace** represents the **entire lifecycle of a single request** as it travels through multiple services.
+
+- Starts when a request enters the system
+- Ends when the response is returned
+- Identified by a **Trace ID**
+- Contains multiple spans
+
+---
+
+### 2️⃣ Span
+A **Span** represents a **single unit of work** within a trace.
+
+- Each service creates one or more spans
+- Has a start time and end time
+- Shows how long a specific operation took
+
+---
+
+### 3️⃣ Tags (Attributes)
+**Tags** are key-value metadata attached to spans.
+
+They provide context such as:
+- HTTP method (GET, POST)
+- URL path
+- Status code
+- Service name
+- Error details
+
+---
+
+## 🌐 What Is OpenTelemetry?
+
+**OpenTelemetry** is an **open-source observability framework** used to generate, collect, and export:
+- Traces
+- Metrics
+- Logs
+
+### Why OpenTelemetry?
+- Vendor-neutral standard
+- Automatic instrumentation (no code changes needed)
+- Works with Java, Spring Boot, and microservices
+- Sends telemetry data to backends like **Tempo**
+
+In EazyBank:
+- OpenTelemetry Java Agent runs in the background
+- Automatically instruments Gateway and microservices
+- Captures traces and spans transparently
+
+---
+
+## 📦 What Is Grafana Tempo?
+
+**Grafana Tempo** is a **distributed tracing backend** designed to:
+- Store large volumes of traces efficiently
+- Work seamlessly with Grafana
+- Scale horizontally
+- Avoid complex indexing
+
+### Key Responsibilities of Tempo:
+- Receive traces from OpenTelemetry
+- Store and organize traces
+- Allow fast querying by Trace ID
+- Integrate directly with Grafana for visualization
+
+---
+
+## 🔄 Distributed Tracing Flow (End-to-End)
+
+### 1️⃣ User Sends Request
+A client sends a request (e.g., via browser or Postman).
+
+---
+
+### 2️⃣ Request Reaches API Gateway
+The request first enters the **Spring Cloud Gateway**, which becomes the starting point of the trace.
+
+---
+
+### 3️⃣ Request Flows Through Microservices
+The request travels across:
+- Gateway
+- Accounts
+- Loans
+- Cards
+
+Each service contributes its own span to the same trace.
+
+---
+
+### 4️⃣ OpenTelemetry Java Agent Works in Background
+- Automatically creates trace & spans
+- Injects trace context into headers
+- Propagates Trace ID across services
+- No business code changes required
+
+---
+
+### 5️⃣ Traces Are Sent to Tempo
+All generated traces and spans are exported to **Grafana Tempo**.
+
+---
+
+### 6️⃣ Tempo Stores & Organizes Traces
+- Stores trace data efficiently
+- Groups spans under a single Trace ID
+- Makes traces searchable
+
+---
+
+### 7️⃣ Grafana Queries Tempo
+Grafana connects to Tempo as a **data source** and queries trace data.
+
+---
+
+### 8️⃣ Grafana Shows Traces Visually
+Grafana displays:
+- Complete request flow
+- Service-to-service calls
+- Span durations
+- Latency breakdown
+- Errors (if any)
+
+📊 This gives a **visual map of how requests travel through EazyBank microservices**.
+
+---
+### 🔎 Distributed Trace Visualization using Trace ID (Tempo)
+
+![Tempo Trace View](utils/pro10.png)
+
+**Description:**
+- Trace ID was copied from **Loki logs**
+- Pasted into **Grafana → Explore → Tempo**
+- Executed query using the Trace ID
+- Grafana displayed a **complete end-to-end tracing graph**
+- Shows spans across **Gateway, Accounts, Loans, and Cards**
+
+
+---
+
+## 🎯 Final Outcome
+
+By implementing **Grafana + Tempo + OpenTelemetry**:
+- End-to-end request tracing is achieved
+- Debugging becomes faster and easier
+- Performance bottlenecks are clearly visible
+- Microservices observability reaches production-grade level
+
+🚀 **This completes the Distributed Tracing implementation in EazyBank**
