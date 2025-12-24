@@ -610,7 +610,10 @@ Prometheus periodically scrapes the exposed metrics from applications, stores th
 
 **Step 4: Grafana – Dashboard & Visualization**  
 Grafana reads metrics from Prometheus and presents them as interactive dashboards, graphs, and charts, giving teams clear visibility into system performance and health.
+
 ---
+
+
 ## 📊 Prometheus Dashboards – Metrics Visualization (Screenshots)
 
 The following screenshots demonstrate how **Prometheus** is used to monitor EazyBank microservices by accessing: 
@@ -619,10 +622,9 @@ http://localhost:9090/prometheus/targets
 
 Each image highlights a specific capability of Prometheus dashboards and metrics exploration.
 
----
+
 
 ### 🖼️ Screenshot 1: Prometheus Targets & Health Status  
-**Image:** `pro1.png`
 
 **Description:**  
 This screenshot shows the **Status → Targets** page in Prometheus.  
@@ -633,7 +635,6 @@ Here, all registered scrape targets are listed along with their **health status*
 ---
 
 ### 🖼️ Screenshot 2: Metrics Explorer – All Available Metrics  
-**Image:** `pro2.png`
 
 **Description:**  
 This screenshot shows the **Metrics Explorer**, where Prometheus lists **all available metrics** collected from applications and infrastructure.
@@ -643,7 +644,6 @@ This screenshot shows the **Metrics Explorer**, where Prometheus lists **all ava
 ---
 
 ### 🖼️ Screenshot 3: System CPU Usage – All Services  
-**Image:** `pro3.png`
 
 **Description:**  
 In this screenshot, the metric **`system_cpu_usage`** is selected and visualized as a graph.
@@ -653,7 +653,6 @@ In this screenshot, the metric **`system_cpu_usage`** is selected and visualized
 ---
 
 ### 🖼️ Screenshot 4: System CPU Usage – Accounts Service  
-**Image:** `pro4.png`
 
 **Description:**  
 This screenshot focuses specifically on the **Accounts microservice**, filtering the CPU usage metric for that service only.
@@ -663,7 +662,6 @@ This screenshot focuses specifically on the **Accounts microservice**, filtering
 ---
 
 ### 🖼️ Screenshot 5: Process Uptime Seconds  
-**Image:** `pro5.png`
 
 **Description:**  
 This screenshot visualizes the metric **`process_uptime_seconds`**, which shows how long each service instance has been running.
