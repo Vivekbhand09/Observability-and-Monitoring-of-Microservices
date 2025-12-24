@@ -445,3 +445,247 @@ This helps in:
 Microservices → Alloy → Loki → Grafana**
 
 ---
+
+## 📊 Metrics & Monitoring in EazyBank Microservices  
+### Using Spring Boot Actuator, Micrometer, Prometheus & Grafana
+
+## ❓ Why Do We Need Metrics & Monitoring?
+
+In a microservices-based system, applications are:
+- Distributed across multiple services
+- Deployed independently
+- Scaled dynamically
+- Running inside containers or cloud environments
+
+Without proper monitoring, it becomes very difficult to answer critical questions such as:
+- Is my service healthy right now?
+- How much CPU or memory is it using?
+- Is response time increasing?
+- Are error rates going up?
+- Will the system handle increased traffic?
+
+### 🚨 Problems Without Monitoring
+- Failures are detected **too late**
+- Performance bottlenecks go unnoticed
+- No visibility into system health
+- No data to plan scaling or capacity
+- Difficult troubleshooting during incidents
+
+### ✅ Solution: Metrics & Monitoring
+Metrics and monitoring provide **real-time insights** into application behavior and system health, allowing teams to:
+- Detect issues early
+- Analyze performance trends
+- Prevent outages
+- Make data-driven decisions
+
+---
+
+## 🌡️ What Is Micrometer?
+
+**Micrometer** is a **metrics instrumentation library** for Java applications and is the **default metrics facade used by Spring Boot**.
+
+It acts as a **bridge between Spring Boot applications and monitoring systems** like:
+- Prometheus
+- Grafana
+- Datadog
+- New Relic
+
+### 🔍 Why Do We Use Micrometer?
+
+- It provides a **vendor-neutral API** for metrics
+- Automatically instruments:
+  - JVM metrics
+  - CPU usage
+  - Memory usage
+  - Thread pools
+  - HTTP request metrics
+- Seamlessly integrates with **Spring Boot Actuator**
+- Makes it easy to export metrics to Prometheus
+
+👉 In simple terms:
+> **Micrometer collects application metrics and exposes them in a format that monitoring tools can understand.**
+
+---
+
+## 📡 What Is Prometheus?
+
+**Prometheus** is an **open-source monitoring and alerting system** designed for **cloud-native and microservices architectures**.
+
+It works on a **pull-based model**, where Prometheus periodically **scrapes metrics** from applications and infrastructure endpoints.
+
+### 🔑 Key Characteristics of Prometheus
+
+- Pull-based metrics collection
+- Time-series database (TSDB)
+- Powerful query language (**PromQL**)
+- Service discovery support (Docker, Kubernetes)
+- Built-in alerting mechanism
+- Tight integration with Grafana
+
+Prometheus is especially well-suited for:
+- Dynamic microservices environments
+- Containerized applications
+- Cloud-native systems
+
+---
+
+## 🎯 Main Uses of Prometheus
+
+### 1️⃣ Monitoring System Performance
+Prometheus tracks:
+- CPU usage
+- Memory usage
+- JVM heap and non-heap memory
+- Thread count
+- Garbage collection activity
+
+This helps identify performance bottlenecks early.
+
+---
+
+### 2️⃣ Alerting
+Prometheus can trigger alerts when:
+- CPU or memory crosses thresholds
+- Error rates spike
+- Services become unavailable
+
+Alerts can be sent to tools like:
+- Alertmanager
+- Slack
+- Email
+- PagerDuty
+
+---
+
+### 3️⃣ Prometheus & Docker Monitoring
+Prometheus can monitor:
+- Docker containers
+- Container resource usage
+- Application instances running inside containers
+
+This is critical for microservices deployed using Docker.
+
+---
+
+### 4️⃣ Application Monitoring
+Prometheus monitors application-level metrics such as:
+- HTTP request count
+- Response time
+- Error rates
+- Endpoint performance
+
+These metrics come directly from **Spring Boot Actuator + Micrometer**.
+
+---
+
+### 5️⃣ Capacity Planning
+By analyzing historical metrics, teams can:
+- Predict future load
+- Plan scaling strategies
+- Decide when to add resources
+
+This avoids over-provisioning or under-provisioning.
+
+---
+
+### 6️⃣ Service Health Tracking
+Prometheus continuously checks:
+- Service availability
+- Health endpoints
+- Uptime and downtime patterns
+
+This ensures proactive monitoring instead of reactive firefighting.
+
+---
+### 🔄 Metrics & Monitoring Flow:
+
+**Step 1: Spring Boot Actuator – Data Exposer**  
+Spring Boot Actuator exposes internal application data such as health status, JVM metrics, HTTP request statistics, and system information through standardized endpoints.
+
+**Step 2: Micrometer – Metrics Translator**  
+Micrometer collects these metrics from the application and translates them into a monitoring-system–friendly format, acting as a bridge between Spring Boot and Prometheus.
+
+**Step 3: Prometheus – Metrics Collector & Storage**  
+Prometheus periodically scrapes the exposed metrics from applications, stores them as time-series data, and makes them available for querying and alerting.
+
+**Step 4: Grafana – Dashboard & Visualization**  
+Grafana reads metrics from Prometheus and presents them as interactive dashboards, graphs, and charts, giving teams clear visibility into system performance and health.
+---
+## 📊 Prometheus Dashboards – Metrics Visualization (Screenshots)
+
+The following screenshots demonstrate how **Prometheus** is used to monitor EazyBank microservices by accessing: 
+http://localhost:9090/prometheus/targets
+
+
+Each image highlights a specific capability of Prometheus dashboards and metrics exploration.
+
+---
+
+### 🖼️ Screenshot 1: Prometheus Targets & Health Status  
+**Image:** `pro1.png`
+
+**Description:**  
+This screenshot shows the **Status → Targets** page in Prometheus.  
+Here, all registered scrape targets are listed along with their **health status**.
+
+![Prometheus Targets Health](utils/pro1.png)
+
+---
+
+### 🖼️ Screenshot 2: Metrics Explorer – All Available Metrics  
+**Image:** `pro2.png`
+
+**Description:**  
+This screenshot shows the **Metrics Explorer**, where Prometheus lists **all available metrics** collected from applications and infrastructure.
+
+![Prometheus Metrics List](utils/pro2.png)
+
+---
+
+### 🖼️ Screenshot 3: System CPU Usage – All Services  
+**Image:** `pro3.png`
+
+**Description:**  
+In this screenshot, the metric **`system_cpu_usage`** is selected and visualized as a graph.
+
+![System CPU Usage Graph](utils/pro3.png)
+
+---
+
+### 🖼️ Screenshot 4: System CPU Usage – Accounts Service  
+**Image:** `pro4.png`
+
+**Description:**  
+This screenshot focuses specifically on the **Accounts microservice**, filtering the CPU usage metric for that service only.
+
+![Accounts Service CPU Usage](utils/pro4.png)
+
+---
+
+### 🖼️ Screenshot 5: Process Uptime Seconds  
+**Image:** `pro5.png`
+
+**Description:**  
+This screenshot visualizes the metric **`process_uptime_seconds`**, which shows how long each service instance has been running.
+
+![Process Uptime Seconds](utils/pro5.png)
+
+---
+
+
+
+
+
+---
+## ✅ Outcome of Metrics & Monitoring Integration
+
+By integrating **Spring Boot Actuator + Micrometer + Prometheus + Grafana**, EazyBank microservices gain:
+
+- 📊 Real-time visibility into system health
+- 🔍 Deep insights into application performance
+- 🚨 Early detection of failures
+- 📈 Data-driven capacity planning
+- 🛠️ Faster troubleshooting and incident resolution
+
+🚀 **This makes the EazyBank microservices platform observable, monitorable, and production-ready**
+
