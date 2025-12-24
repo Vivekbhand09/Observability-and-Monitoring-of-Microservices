@@ -1,5 +1,24 @@
 # 🔍 Observability and Monitoring in EazyBank Microservices
 
+![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?style=flat-square)
+![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-Microservices-blue?style=flat-square)
+![Spring Cloud Gateway](https://img.shields.io/badge/API%20Gateway-Spring%20Cloud-green?style=flat-square)
+![Microservices](https://img.shields.io/badge/Architecture-Microservices-blueviolet?style=flat-square)
+![Resilience4j](https://img.shields.io/badge/Resilience4j-Fault%20Tolerance-red?style=flat-square)
+![Observability](https://img.shields.io/badge/Observability-Logs%20%7C%20Metrics%20%7C%20Traces-purple?style=flat-square)
+![Monitoring](https://img.shields.io/badge/Monitoring-Production%20Ready-success?style=flat-square)
+![Micrometer](https://img.shields.io/badge/Micrometer-Metrics%20Facade-yellow?style=flat-square)
+![Prometheus](https://img.shields.io/badge/Prometheus-Metrics%20Collector-red?style=flat-square)
+![PromQL](https://img.shields.io/badge/PromQL-Metrics%20Querying-orange?style=flat-square)
+![Grafana](https://img.shields.io/badge/Grafana-Dashboards%20%26%20Alerts-orange?style=flat-square)
+![Grafana Loki](https://img.shields.io/badge/Loki-Centralized%20Logging-blueviolet?style=flat-square)
+![Grafana Alloy](https://img.shields.io/badge/Alloy-Telemetry%20Collector-lightgrey?style=flat-square)
+![Grafana Tempo](https://img.shields.io/badge/Tempo-Distributed%20Tracing-lightblue?style=flat-square)
+![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-Auto%20Instrumentation-green?style=flat-square)
+![MinIO](https://img.shields.io/badge/MinIO-Object%20Storage-darkred?style=flat-square)
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue?style=flat-square)
+
 This section represents an **advanced evolution** of the EazyBank microservices architecture, where the focus shifts from **resiliency** to **deep visibility, performance insights, and proactive system health management**.
 
 By adding **observability and monitoring**, the system becomes easier to **debug, analyze, and operate in production**.
@@ -889,3 +908,26 @@ By implementing **Grafana + Tempo + OpenTelemetry**:
 - Microservices observability reaches production-grade level
 
 🚀 **This completes the Distributed Tracing implementation in EazyBank**
+
+---
+
+## 📚 What I Learned from This Section
+
+- 🧩 Designed and built **Spring Boot microservices** (Accounts, Loans, Cards, Gateway)
+- 🔁 Implemented **resiliency patterns** using Resilience4j (Circuit Breaker, Retry, Fallback, Rate Limiter, Bulkhead)
+- 👀 Understood the difference between **Observability vs Monitoring**
+- 🧱 Learned the **three pillars of observability**: Metrics, Logs, Traces
+- 📄 Implemented **centralized logging** using Grafana, Loki, and Alloy
+- 🧠 Gained deep understanding of **log levels** (TRACE, DEBUG, INFO, WARN, ERROR)
+- 🔍 Queried and analyzed logs using **Grafana Explore with Loki**
+- 📊 Exposed application metrics using **Spring Boot Actuator**
+- 🌡️ Instrumented applications using **Micrometer**
+- 📡 Collected and stored metrics with **Prometheus**
+- 📈 Built **Grafana dashboards** for JVM, CPU, memory, and service metrics
+- 🚨 Created **Grafana alerts** using Prometheus metrics (`up`)
+- 🧭 Implemented **distributed tracing** with OpenTelemetry Java Agent
+- 🧵 Learned core tracing concepts: **Trace, Span, Tags**
+- 📦 Stored and queried traces using **Grafana Tempo**
+- 🔗 Correlated **Logs ↔ Metrics ↔ Traces** for faster debugging
+- 🛠️ Diagnosed latency, failures, and bottlenecks in a distributed system
+- 🚀 Built a **production-ready, observable microservices architecture**
