@@ -410,7 +410,7 @@ This confirms that:
 - Stored in Loki
 - Queried and displayed through Grafana
 
-![Grafana Explore – Loki Logs for Accounts Service](utils/loki2.png)
+![Grafana Explore – Loki Logs for Accounts Service](utils/loki3.png)
 
 ---
 
@@ -430,7 +430,7 @@ This helps in:
 - Detecting abnormal behavior
 - Understanding service runtime patterns
 
-![Loki Logs Chart – Accounts Service](utils/loki3.png)
+![Loki Logs Chart – Accounts Service](utils/loki2.png)
 
 ---
 
