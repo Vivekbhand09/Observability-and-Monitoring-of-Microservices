@@ -373,3 +373,75 @@ Microservices
 
 ```
 ---
+## 📸 Logging & Observability – Implementation Screenshots
+
+The following screenshots demonstrate the **successful setup and verification of centralized logging and observability** in the EazyBank microservices using **Grafana + Loki**.
+
+---
+
+## 🧩 Grafana Data Sources Configuration
+
+### 📊 Grafana – Connected Data Sources
+
+This screenshot shows the **Grafana Data Sources page**, confirming that all required observability components are properly connected.
+
+It verifies the successful integration of:
+- **Loki** → Log aggregation
+- **Prometheus** → Metrics collection
+- **Tempo** → Distributed tracing
+
+This ensures that Grafana can visualize **logs, metrics, and traces** from the microservices ecosystem.
+
+![Grafana Datasources – Loki, Prometheus, Tempo](utils/loki1.png)
+
+---
+
+## 🔍 Logs Exploration Using Loki (Accounts Service)
+
+### 🧾 Grafana Explore – Loki Logs (Accounts Service)
+
+This screenshot is taken from **Grafana → Explore section**, where:
+- **Loki** is selected as the data source
+- Logs for the **Accounts microservice** are queried
+- Real-time application logs are visible and searchable
+
+This confirms that:
+- Logs are successfully collected by Alloy
+- Stored in Loki
+- Queried and displayed through Grafana
+
+![Grafana Explore – Loki Logs for Accounts Service](utils/loki2.png)
+
+---
+
+## 📈 Log Visualization & Activity Chart
+
+### 📉 Loki Log Volume & Activity Chart (Accounts Service)
+
+This screenshot shows the **log activity chart** under the Loki data source for the Accounts service.
+
+It visually represents:
+- Log frequency over time
+- Spikes in log generation
+- Correlation between application activity and logs
+
+This helps in:
+- Identifying peak load periods
+- Detecting abnormal behavior
+- Understanding service runtime patterns
+
+![Loki Logs Chart – Accounts Service](utils/loki3.png)
+
+---
+
+## ✅ What These Screenshots Prove
+
+- ✔️ Grafana is correctly configured with all observability data sources  
+- ✔️ Loki is successfully ingesting and storing logs  
+- ✔️ Logs from microservices are centralized and searchable  
+- ✔️ Developers can visually analyze logs and system behavior  
+
+📌 **These screenshots validate the complete logging pipeline:  
+Microservices → Alloy → Loki → Grafana**
+
+---
