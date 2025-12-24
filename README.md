@@ -691,6 +691,16 @@ This helps correlate **system performance** with **service availability**.
 ![Combined Metrics - CPU Usage and UP Status](utils/pro8.png)
 
 ---
+## 🚨 Grafana Alert – Cards Service Availability
+
+### 🔔 Cards Service UP/DOWN Alert
+An alert was configured in **Grafana** using the Prometheus `up` metric to continuously monitor the **Cards microservice availability**.
+
+- Metric used: `up`
+- Purpose: Detect whether the Cards service is **running (UP = 1)** or **down (UP = 0)**
+- Benefit: Enables **early failure detection** and faster incident response
+
+![Grafana Alert - Cards Service UP/DOWN](utils/pro9.png)
 
 
 ---
