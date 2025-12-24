@@ -670,8 +670,27 @@ This screenshot visualizes the metric **`process_uptime_seconds`**, which shows 
 
 ---
 
+## 📊 Observability Screenshots – Grafana & Prometheus (Explore View)
 
 
+### 🔹 System CPU Usage – All Services
+Shows CPU usage across all microservices using Prometheus as data source in Grafana Explore.
+
+![System CPU Usage - All Services](utils/pro6.png)
+
+---
+
+### 🔹 Combined Metrics Graph (CPU Usage + Service Status)
+Combined graph using two Prometheus queries:
+- `system_cpu_usage`
+- `up`
+
+This helps correlate **system performance** with **service availability**.
+
+![Combined Metrics - CPU Usage and UP Status](utils/pro7.png)
+![Combined Metrics - CPU Usage and UP Status](utils/pro8.png)
+
+---
 
 
 ---
