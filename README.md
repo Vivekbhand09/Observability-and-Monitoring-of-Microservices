@@ -1,4 +1,4 @@
-# 🔍 Observability and Monitoring in EazyBank Microservices
+# 🔍 Observability and Monitoring in EazyBank Microservices 
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?style=flat-square)
